@@ -1,25 +1,49 @@
 const mongoose=require('mongoose')
 
-const reparacionesSchema=new mongoose.Schema({
+const ventasSchema=new mongoose.Schema({
 
-category:{
-    type:Number,
-    required:true
-},
-quantity:{
-    type:Number,
-    required:true
-},
-price:{
-    type:Number,
-    required:true
-},
 
-discount:{
-    type:Number,
+codigoVenta:{
+    type:String,
+    required:true
+},    
+cedulaCliente:{
+    type:String,
     required:true
 },
-description:{
+skuProducto:{
+    type:String,
+    required:true
+},    
+fechaVenta:{
+    type:Date,
+    required:true
+},  
+cantidadVendida:{
+    type:Number,
+    required:true
+},  
+precioUnitario:{
+    type:Number,
+    required:true
+},  
+totalVenta:{
+    type:Number,
+    required:true
+},  
+metodoPago:{
+    type:String,
+    required:true
+}, 
+direccionEnvio:{
+    type:String,
+    required:true
+}, 
+numeroGuiaEnvio:{
+    type:String,
+    required:true
+}, 
+identificadorTransaccion:{
     type:String,
     required:true
 }
@@ -27,4 +51,4 @@ description:{
 }
 
 )
-module.exports=mongoose.model('reparaciones',reparacionesSchema)
+module.exports=mongoose.model('ventas',ventasSchema)

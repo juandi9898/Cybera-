@@ -1,12 +1,12 @@
 const express=require('express');
 const router=express.Router();
-const Reparacion=require('../models/reparacionModel');
+const Venta=require('../models/ventaModel');
 
 router.get('/obtenerTodos', async (req, res) => {
 
     try {
-        const reparaciones = await Reparacion.find();
-        res.json(reparaciones);
+        const ventas = await Venta.find();
+        res.json(ventas);
     } catch (error) {
         res.status(500).json({ message: 'Error al obtener piezas' });
     }
@@ -14,9 +14,9 @@ router.get('/obtenerTodos', async (req, res) => {
 
 router.post("/agregar", async(req,res)=>{
     try{
-        const reparacion = new Reparacion(req.body);
-        await reparacion.save();
-        res.status(201).json(reparacion);
+        const venta = new Venta(req.body);
+        await venta.save();
+        res.status(201).json(venta);
     }
     catch(err){
         res.status(400).json({message:err.message})
@@ -25,8 +25,8 @@ router.post("/agregar", async(req,res)=>{
 
 router.delete("/eliminar/:id", async(req,res)=>{
     try{
-        const reparacion=Reparacion.findByIdAndDelete(req.params.id);
-        if(!reparacion) return res.status(400).json({message:"Reparación no encontrada"});
+        const venta=Venta.findByIdAndDelete(req.params.id);
+        if(!venta) return res.status(400).json({message:"Reparación no encontrada"});
         res.json({message:"Producto Eliminado"});
     }
     catch(err){
@@ -37,9 +37,9 @@ router.delete("/eliminar/:id", async(req,res)=>{
 
 router.put('putReparacion/:id', async (req,res)=>{
     try{
-        const reparacion=await Reparacion.findByIdAndUpdate(req.params.id,req.body,{new:true});
-        if(!reparacion) return res.status(404).json({message:"Reparación no encontrado"})
-            res.json(reparacion)
+        const venta=await Venta.findByIdAndUpdate(req.params.id,req.body,{new:true});
+        if(!venta) return res.status(404).json({message:"Reparación no encontrado"})
+            res.json(venta)
     }
     catch(err){
         res.status(500).json({message:err.message})
